@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<style>
+	table, td{
+		border: 2px black solid;
+		width: 1200px;
+		height: 50px;}
+	#auto_div{
+		border: 2px black solid;
+		position: relative;
+		width: 1196px;
+		height: 750px;}
+	#manual_div{
+		display:none;
+		border: 2px black solid;
+		position: relative;
+		width: 1196px;
+		height: 750px;}
+	.bt{
+		width: 296px;
+		height: 50px;}
+	.rp{
+		position: relative;
+		top: 50px;
+		left: 50px;
+		height: 30px;
+	}
+	#rp_text{
+		width: 1000px;
+	}
+	#rp_info{
+		width: 1100px;
+		height: 30px;
+		position: relative;
+		top: 80px;
+		left: 50px;
+	}
+
+	
+</style>	
+<head>
+<meta charset="UTF-8">
+<title>Auto/Manual Mode</title>
+</head>
+<body>
+		
+	<table>
+		<tr>
+			<td id="auto">Auto Mode</td>
+			<td id="manual">Maual Mode</td>
+		</tr>
+	</table>
+	
+	<div id="auto_div">
+		
+		<!-- 레시피 선택 Code -->
+		<input type="text" value="레시피를 선택해주세요." id="rp_text" class="rp" readonly>
+		<button class="rp"><label for="recipe">...</label></button>
+		<input type="file" value="Recipe" id="recipe" style="display: none;">
+		
+		<!-- 레시피 정보 Code -->
+		<input type="text" id="rp_info" readonly>
+	</div>
+	
+	<div id="manual_div">manual_dev</div>
+	
+	<div id="pannel">
+		<button type="button" onclick="location.href='gaid'" class="bt">G-AID</button>
+		<button type="button" onclick="location.href='devinfo'" class="bt">dev_info</button>
+		<button type="button" onclick="location.href='jog'" class="bt">jog</button>
+		<button type="button" onclick="location.href='setting'" class="bt">setting</button>
+	</div>
+
+<script>
+	let auto = document.querySelector("#auto");
+	let manual = document.querySelector("#manual");
+
+	
+	auto.addEventListener("click",()=>{
+		document.querySelector("#auto_div").style.display= "block";
+		document.querySelector("#manual_div").style.display= "none";
+	});
+	manual.addEventListener("click",()=>{
+		document.querySelector("#manual_div").style.display= "block";
+		document.querySelector("#auto_div").style.display= "none";
+	});
+
+	
+</script>
+
+</body>
+</html>
