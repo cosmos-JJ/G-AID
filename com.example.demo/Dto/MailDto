@@ -3,7 +3,8 @@ package com.example.demo.Dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
- 
+
+// DTO = 데이터 전송 객체 - 프로세스 사이에서 데이터를 전송하는 객체
 @Getter // 접근자
 @Setter // 설정자
 @NoArgsConstructor // 기본 생성자 어노테이션
