@@ -41,8 +41,7 @@
 │   ├── Service
 │         └── EmailService
 │   └── control
-          └── controller
-├── .gitattributes
+│         └── controller
 ├── README.md
 ├── action_mode.html
 ├── dev_info.html
