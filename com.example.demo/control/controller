@@ -1,1 +1,74 @@
+package com.example.demo.control;
+
+import java.sql.ResultSet;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.example.demo.Dto.MailDto;
+import com.example.demo.Service.EmailService;
+
+@Controller
+public class controller {
+	
+	private final EmailService emailService;
+	 
+    public controller(EmailService emailService) {
+        this.emailService = emailService;
+    }
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/")
+	String getindex() {
+		return "index.html";
+	}
+	@RequestMapping(value = "gaid")
+	String gaid() {
+		return "action_mode.html";
+	}
+	@RequestMapping(value = "devinfo")
+	String devinfo() {
+		return "dev_info.html";
+	}
+	@RequestMapping(value = "jog")
+	String jog() {
+		return "jog.html";
+	}
+	@RequestMapping(value = "setting")
+	String setting() {
+		return "setting.html";
+	}
+	@RequestMapping(value = "/send/mail",  method=RequestMethod.GET)
+	String sendmail() {
+		return "/SendMail.html";
+	}
+    @RequestMapping(value="/send/mail", method=RequestMethod.POST)
+    public String sendMail(MailDto mailDto) {
+       
+    	emailService.sendSimpleMessage(mailDto);
+        System.out.println("메일 전송 완료");
+        
+        return "setting.html";
+    }
+	@RequestMapping(method = RequestMethod.POST, value = "login")
+	String postindex() {
+		
+		database db = new database();
+		db.data();
+		
+		String SQL = "SELECT * FROM LOGIN";
+		
+		try {
+			ResultSet re = db.data().executeQuery(SQL);
+			while(re.next()) {
+				System.out.print(re.getString("ID"));
+				System.out.print(re.getString("PW"));
+			}
+			
+		}
+		catch(Exception e) {e.printStackTrace();}
+		
+		return "action_mode.html";
+	}
+}
 
