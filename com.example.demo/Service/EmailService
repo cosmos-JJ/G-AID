@@ -8,7 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@AllArgsConstructor // 모든 변수들을 인수로 받는 생성자를 만들어내는 어노테이션
 public class EmailService {
 	
 	@Autowired // 의존성 주입 어노테이션
