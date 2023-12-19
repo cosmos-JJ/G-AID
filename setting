@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<style>
+	table, td{
+		border: 2px black solid;
+		width: 1200px;
+		height: 50px;}
+	#auto_div{
+		border: 2px black solid;
+		position: relative;
+		width: 1196px;
+		height: 750px;}
+	.bt{
+		width: 296px;
+		height: 50px;}
+</style>	
+<head>
+<meta charset="EUC-KR">
+<title>Setting</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td id="auto">Auto Mode</td>
+			<td id="manual">Maual Mode</td>
+		</tr>
+	</table>
+	<div id="auto_div">
+		<button type="button" onclick="location.href='/send/mail'">mail</button>
+	</div>
+	
+		<div id="pannel">
+		<button type="button" onclick="location.href='gaid'" class="bt">G-AID</button>
+		<button type="button" onclick="location.href='devinfo'" class="bt">dev_info</button>
+		<button type="button" onclick="location.href='jog'" class="bt">jog</button>
+		<button type="button" onclick="location.href='setting'" class="bt">setting</button>
+	</div>
+
+</body>
+</html>
