@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <style>
-	table, td{
+	#main_table{
 		border: 2px black solid;
 		width: 1200px;
 		height: 50px;}
@@ -10,29 +10,163 @@
 		position: relative;
 		width: 1196px;
 		height: 750px;}
-	#bt{
+	.bt{
 		width: 296px;
 		height: 50px;}
-	
+	.table_percent
+	{
+		border: 3px solid black;
+		
+	}
+	fieldset
+	{
+		display: inline;
+	}
+	#reload
+	{
+		top:-50px;
+		left : 300px;
+		position: relative;
+		width: 200px;
+		height: 50px;
+		font-size: 20px;
+	}
+	#cpu_detail td
+	{
+		border: 3px solid black;
+	}
 </style>
 <head>
 <meta charset="EUC-KR">
 <title>Dev_Information</title>
 </head>
 <body>
-	<table>
+	<table id="main_table">
 		<tr>
 			<td id="auto">Auto Mode</td>
 			<td id="manual">Maual Mode</td>
 		</tr>
 	</table>
-	<div id="auto_div">auto_div</div>
+	<div id="auto_div">
+		
+			<fieldset>
+	<fieldset>
+		
+		
+		<table class="table_percent">
+		<tr>
+			<td>GPU 사용율 : </td>
+			<td th:if="${gpu_percent}" th:text="${gpu_percent}"></td>
+			<td>%</td>
+		</tr>
+		</table><br>
+		
+		
+		
+		<table class="table_percent" id="table_cpu">
+		<tr>
+			<td>CPU 사용율 : </td>
+			<td th:if="${cpu_percent}" th:text="${cpu_percent}"></td>
+			<td>%</td>
+		</tr>
+		</table><br>
+		
+		<table class="table_percent">
+		<tr>
+			<td>Memory 사용율 : </td>
+			<td th:if="${memory_percent}" th:text="${memory_percent}"></td>
+			<td>%</td>
+		</tr>
+	
+	    </table><br>
+	<form action="/devinfo" method="get">
+		<input type="submit" value="새로고침" id="reload">	
+	</form>
+	
+	<div style="width: 500px; height: 500px;">
+    <canvas id="myChart"></canvas>
+
+	</fieldset>
+	
+	<fieldset>
+		
+		<table id="cpu_detail" style="display: none;">
+			<tr>
+				<td>Name</td>
+				<td th:if="${cpu_detail}" th:text="${cpu_detail[0]}"> </td>
+			</tr>
+			
+		</table>
+		
+	</fieldset>
+
+	</fieldset>
+		
+		
+	</div>
 	<div id="pannel">
 		<button type="button" onclick="location.href='gaid'" class="bt">G-AID</button>
 		<button type="button" onclick="location.href='devinfo'" class="bt">dev_info</button>
 		<button type="button" onclick="location.href='jog'" class="bt">jog</button>
 		<button type="button" onclick="location.href='setting'" class="bt">setting</button>
 	</div>
+	
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script th:inline="javascript">
+let table_cpu_detail = document.querySelector("#cpu_detail");
+
+document.querySelector("#table_cpu").addEventListener("click", ()=>{
+
+table_cpu_detail.setAttribute("style","display:block"); 
+})
+	
+var context = document
+.getElementById('myChart')
+.getContext('2d');
+var myChart = new Chart(context, {
+type: 'horizontalBar', // 차트의 형태 //horizontalBar???
+data: { // 차트에 들어갈 데이터
+labels: [
+//x 축
+'gpu','cpu','memory'
+],
+datasets: [
+{ //데이터
+label: '성능', //차트 제목
+fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+data: [
+[[${gpu_percent}]],[[${cpu_percent}]],[[${memory_percent}]] //x축 label에 대응되는 데이터 값
+],
+backgroundColor: [
+//색상
+'rgba(255, 99, 132, 0.2)',
+'rgba(54, 162, 235, 0.2)',
+'rgba(255, 206, 86, 0.2)'
+
+],
+borderColor: [
+//경계선 색상
+'rgba(255, 99, 132, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(255, 206, 86, 1)'
+
+],
+borderWidth: 1 //경계선 굵기
+}
+]
+},
+options: {
+scales: {
+
+xAxes: [
+{
+ticks: {
+beginAtZero: true,
+max:100}}]}}});	
+
+</script>
 
 </body>
 </html>
