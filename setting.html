@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <style>
-	table, td{
+	#main_table{
 		border: 2px black solid;
 		width: 1200px;
 		height: 50px;}
@@ -15,18 +15,41 @@
 		height: 50px;}
 </style>	
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Setting</title>
 </head>
 <body>
-	<table>
+	<table id="main_table">
 		<tr>
 			<td id="auto">Auto Mode</td>
 			<td id="manual">Maual Mode</td>
 		</tr>
 	</table>
 	<div id="auto_div">
-		<button type="button" onclick="location.href='/send/mail'">mail</button>
+		<form action:th="@{setting}" method="post">
+			<h1>메일 보내기</h1>
+	        <table>
+	            <tr>
+	                <td>메일 주소</td>
+	                <td>
+	                    <input type="text" name="address" placeholder="이메일 주소를 입력하세요">
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>제목</td>
+	                <td>
+	                    <input type="text" name="title" placeholder="제목을 입력하세요">
+	                </td>
+	            </tr>
+	            <tr>
+	                <td>내용</td>
+	                <td>
+	                    <textarea name="content" placeholder="보낼 내용을 입력하세요"></textarea>
+	                </td>
+	            </tr>
+	        </table>
+        <button>전송</button>
+    	</form>
 	</div>
 	
 		<div id="pannel">
