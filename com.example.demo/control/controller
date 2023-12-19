@@ -13,6 +13,7 @@ import com.example.demo.Service.EmailService;
 public class controller {
 	
 	private final EmailService emailService;
+	// 의존해야하는 객체를 private final로 선언
 	 
     public controller(EmailService emailService) {
         this.emailService = emailService;
