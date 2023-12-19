@@ -34,21 +34,18 @@ public class controller {
 	String jog() {
 		return "jog.html";
 	}
-	@RequestMapping(value = "setting")
+	@RequestMapping(value = "setting", method=RequestMethod.GET)
 	String setting() {
-		return "setting.html";
+		return "/setting.html";
 	}
-	@RequestMapping(value = "/send/mail",  method=RequestMethod.GET)
-	String sendmail() {
-		return "/SendMail.html";
-	}
-    @RequestMapping(value="/send/mail", method=RequestMethod.POST)
-    public String sendMail(MailDto mailDto) {
+
+    @RequestMapping(value="setting", method=RequestMethod.POST)
+    public String sendMail2(MailDto mailDto) {
        
     	emailService.sendSimpleMessage(mailDto);
         System.out.println("메일 전송 완료");
         
-        return "setting.html";
+        return "/setting.html";
     }
 	@RequestMapping(method = RequestMethod.POST, value = "login")
 	String postindex() {
