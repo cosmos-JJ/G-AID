@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class EmailService {
 	
-	@Autowired
+	@Autowired // 의존성 주입 어노테이션
 	private JavaMailSender emailSender;
 	
 			
     public void sendSimpleMessage(MailDto mailDto) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("ks3226643@gmail.com");
-        message.setTo(mailDto.getAddress());
-        message.setSubject(mailDto.getTitle());
-        message.setText(mailDto.getContent());
-        emailSender.send(message);
+        message.setFrom("ks3226643@gmail.com"); // 메일 작성자
+        message.setTo(mailDto.getAddress()); // 메일 수신자
+        message.setSubject(mailDto.getTitle()); // 메일 제목
+        message.setText(mailDto.getContent()); // 메일 내용
+        emailSender.send(message); // 메일 전송
     }
 }
